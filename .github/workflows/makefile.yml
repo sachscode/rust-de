@@ -1,0 +1,30 @@
+name: Build, Test, and Release Rust Projects
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_test_release: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3  # Check out the repository
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1  # Install Rust toolchain 
+        with:
+          toolchain: stable  # Or specify any version you need
+
+      - name: Install C++ toolchain 
+        run:  sudo apt-get update && sudo apt-get install -y build-essential 
+
+      - name: Build Projects
+        run: make debug
+
+      - name: Test Projects
+        run: make test
+
+      - name: Release Projects
+        run: make release
