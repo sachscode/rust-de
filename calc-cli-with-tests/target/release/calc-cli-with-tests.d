@@ -1,1 +1,0 @@
-/Users/sachinpc/code/rust/dataengineering/rust-de/week1/rust-de/calc-cli-with-tests/target/release/calc-cli-with-tests: /Users/sachinpc/code/rust/dataengineering/rust-de/week1/rust-de/calc-cli-with-tests/src/main.rs

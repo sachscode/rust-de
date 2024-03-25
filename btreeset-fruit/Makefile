@@ -1,4 +1,4 @@
-.PHONY: lint debug test
+.PHONY: clean lint debug test build release
 
 build:
 	cargo build
@@ -14,3 +14,6 @@ debug:
 
 release:
 	cargo build --release
+
+clean:
+	cargo clean
