@@ -1,37 +1,30 @@
----
-on: [push, pull_request]
+name: Build, Test, and Release Rust Projects
 
-name: Continuous Integration
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  ci:
+  build_test_release: 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        rust:
-          - stable
-          - nightly
-          - 1.46.0 # MSRV
-
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3  # Check out the repository
 
-      - uses: actions-rs/toolchain@v1
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1  # Install Rust toolchain 
         with:
-          pdrofile: minimal
-          toolchain: {{ '${{ matrix.rust }}' }}
-          override: true
+          toolchain: stable  # Or specify any version you need
 
-      - name: Install cc
-        run: sudo apt-get update && sudo apt-get install --yes gcc
+      - name: Install C++ toolchain 
+        run:  sudo apt-get update && sudo apt-get install -y build-essential 
 
-      - uses: actions-rs/cargo@v1
-        with:
-          command: build
+      - name: Build Projects
+        run: make debug
 
-      - uses: actions-rs/cargo@v1
-        with:
-          command: test
-      - uses: actions-rs/cargo@v1
-        with:
-          command: release
+      - name: Test Projects
+        run: make test
+
+      - name: Release Projects
+        run: make release
