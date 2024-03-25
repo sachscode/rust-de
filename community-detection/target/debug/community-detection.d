@@ -1,1 +1,0 @@
-/Users/sachinpc/code/rust/dataengineering/rust-de/week1/rust-de/community-detection/target/debug/community-detection: /Users/sachinpc/code/rust/dataengineering/rust-de/week1/rust-de/community-detection/src/main.rs
